@@ -154,7 +154,7 @@ export default function Index() {
             transition: "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s",
           }}
         >
-          CIIEK
+          ᴄᴨᴇᴋᴛᴏᴩᴀ
         </h1>
 
         {/* Tagline */}
