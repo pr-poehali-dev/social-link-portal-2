@@ -128,14 +128,14 @@ export default function Index() {
                 width: "100%",
                 height: "100%",
                 borderRadius: "50%",
-                background: "#0d0d22",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: 36,
+                overflow: "hidden",
               }}
             >
-              ✦
+              <img
+                src="https://cdn.poehali.dev/projects/bc144e7c-0edc-4854-a749-62de78b03ca8/bucket/bdec6c54-5a25-45d9-94d8-1f618f279971.jpg"
+                alt="CIIEK"
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
             </div>
           </div>
         </div>
