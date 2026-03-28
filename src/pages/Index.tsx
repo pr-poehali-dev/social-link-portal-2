@@ -1,14 +1,290 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
 
-const Index = () => {
+const socials = [
+  {
+    id: "tiktok",
+    label: "TikTok",
+    handle: "@ciiekcom",
+    url: "https://tiktok.com/@ciiekcom",
+    emoji: "🎵",
+    gradientColors: ["#ff0050", "#ff00c8", "#7b2fff"],
+    glow: "rgba(255,0,80,0.5)",
+    glowHover: "rgba(255,0,200,0.7)",
+    border: "rgba(255,0,80,0.3)",
+    borderHover: "rgba(255,0,200,0.8)",
+  },
+  {
+    id: "tg-personal",
+    label: "Telegram",
+    handle: "@KarmnetCom",
+    url: "https://t.me/KarmnetCom",
+    emoji: "✈️",
+    gradientColors: ["#00b4ff", "#0088cc", "#005f99"],
+    glow: "rgba(0,136,204,0.5)",
+    glowHover: "rgba(0,180,255,0.7)",
+    border: "rgba(0,136,204,0.3)",
+    borderHover: "rgba(0,180,255,0.8)",
+  },
+  {
+    id: "tg-channel",
+    label: "Telegram канал",
+    handle: "@CIIEKlOGO",
+    url: "https://t.me/CIIEKlOGO",
+    emoji: "📡",
+    gradientColors: ["#43e97b", "#00c9a7", "#0088cc"],
+    glow: "rgba(67,233,123,0.5)",
+    glowHover: "rgba(0,201,167,0.7)",
+    border: "rgba(67,233,123,0.3)",
+    borderHover: "rgba(0,201,167,0.8)",
+  },
+];
+
+export default function Index() {
+  const [visible, setVisible] = useState(false);
+  const [hovered, setHovered] = useState<string | null>(null);
+
+  useEffect(() => {
+    const t = setTimeout(() => setVisible(true), 100);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
+    <div
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+      style={{ background: "#060612" }}
+    >
+      {/* Ambient blobs */}
+      <div
+        className="pointer-events-none absolute animate-float"
+        style={{
+          top: "-10%",
+          left: "-10%",
+          width: "55vw",
+          height: "55vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(123,47,255,0.18) 0%, transparent 70%)",
+          filter: "blur(40px)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute"
+        style={{
+          bottom: "-10%",
+          right: "-10%",
+          width: "50vw",
+          height: "50vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,180,255,0.15) 0%, transparent 70%)",
+          filter: "blur(40px)",
+          animation: "float 5s ease-in-out infinite reverse",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute"
+        style={{
+          top: "40%",
+          left: "30%",
+          width: "40vw",
+          height: "40vw",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,0,80,0.08) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+
+      {/* Noise overlay */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          opacity: 0.04,
+        }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col items-center w-full max-w-md px-6">
+
+        {/* Avatar */}
+        <div
+          style={{
+            marginBottom: "1.5rem",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(24px)",
+            transition: "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)",
+          }}
+        >
+          <div
+            style={{
+              width: 88,
+              height: 88,
+              borderRadius: "50%",
+              background: "linear-gradient(135deg, #7b2fff, #ff0050, #00b4ff)",
+              padding: 3,
+              boxShadow: "0 0 40px rgba(123,47,255,0.5)",
+            }}
+          >
+            <div
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: "50%",
+                background: "#0d0d22",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 36,
+              }}
+            >
+              ✦
+            </div>
+          </div>
+        </div>
+
+        {/* Name */}
+        <h1
+          className="font-display text-center"
+          style={{
+            fontSize: "clamp(1.6rem, 6vw, 2.4rem)",
+            fontWeight: 900,
+            color: "#ffffff",
+            letterSpacing: "-0.02em",
+            marginBottom: "0.25rem",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(24px)",
+            transition: "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s",
+          }}
+        >
+          CIIEK
+        </h1>
+
+        {/* Tagline */}
+        <p
+          className="font-body text-center"
+          style={{
+            fontSize: "0.82rem",
+            color: "rgba(255,255,255,0.4)",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            marginBottom: "2.5rem",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(24px)",
+            transition: "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s",
+          }}
+        >
+          Мои соцсети
+        </p>
+
+        {/* Social buttons */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem", width: "100%" }}>
+          {socials.map((s, i) => {
+            const isHovered = hovered === s.id;
+            return (
+              <a
+                key={s.id}
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onMouseEnter={() => setHovered(s.id)}
+                onMouseLeave={() => setHovered(null)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "1rem",
+                  padding: "1rem 1.25rem",
+                  borderRadius: "1rem",
+                  background: isHovered
+                    ? "rgba(255,255,255,0.07)"
+                    : "rgba(255,255,255,0.04)",
+                  border: `1px solid ${isHovered ? s.borderHover : s.border}`,
+                  backdropFilter: "blur(16px)",
+                  boxShadow: isHovered
+                    ? `0 0 35px ${s.glowHover}, inset 0 1px 0 rgba(255,255,255,0.08)`
+                    : `0 0 0 transparent, inset 0 1px 0 rgba(255,255,255,0.04)`,
+                  cursor: "pointer",
+                  textDecoration: "none",
+                  transform: isHovered
+                    ? "translateY(-4px) scale(1.015)"
+                    : "translateY(0) scale(1)",
+                  opacity: visible ? 1 : 0,
+                  transition: "all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)",
+                  transitionDelay: visible ? `${0.3 + i * 0.12}s` : "0s",
+                }}
+              >
+                {/* Icon bubble */}
+                <div
+                  style={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: "0.875rem",
+                    background: `linear-gradient(135deg, ${s.gradientColors[0]}, ${s.gradientColors[1]}, ${s.gradientColors[2]})`,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: 22,
+                    flexShrink: 0,
+                    boxShadow: isHovered ? `0 6px 24px ${s.glow}` : "none",
+                    transition: "box-shadow 0.35s ease",
+                  }}
+                >
+                  {s.emoji}
+                </div>
+
+                {/* Label + handle */}
+                <div style={{ flex: 1 }}>
+                  <div
+                    className="font-display"
+                    style={{
+                      fontSize: "0.9rem",
+                      fontWeight: 700,
+                      color: "#ffffff",
+                      letterSpacing: "0.02em",
+                      marginBottom: 3,
+                    }}
+                  >
+                    {s.label}
+                  </div>
+                  <div
+                    className="font-body"
+                    style={{
+                      fontSize: "0.78rem",
+                      color: "rgba(255,255,255,0.4)",
+                    }}
+                  >
+                    {s.handle}
+                  </div>
+                </div>
+
+                {/* Arrow */}
+                <div
+                  style={{
+                    color: isHovered ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.25)",
+                    fontSize: 20,
+                    transform: isHovered ? "translateX(5px)" : "translateX(0)",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  →
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        {/* Footer */}
+        <p
+          className="font-body text-center"
+          style={{
+            marginTop: "2.5rem",
+            fontSize: "0.7rem",
+            color: "rgba(255,255,255,0.18)",
+            letterSpacing: "0.1em",
+            opacity: visible ? 1 : 0,
+            transition: "opacity 0.7s ease 0.8s",
+          }}
+        >
+          © 2026 CIIEK
+        </p>
       </div>
     </div>
   );
-};
-
-export default Index;
+}
